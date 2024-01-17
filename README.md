@@ -119,10 +119,12 @@ This is a movie listing platform where users can browse, search, and save movies
 - **Description**: Remove a movie from the user's watchlist.
 - **Authentication**: This route requires a valid token to be sent in the `Authorization` header.
 
-
-
 ## Usage
 Open your browser and visit `http://localhost:<port_number>`
+
+## Deployed Links
+    - Backend : `https://moviemagnet.onrender.com`
+    - Frontend : `https://movie-magnet-phi.vercel.app/`
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
