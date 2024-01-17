@@ -3,7 +3,8 @@ import {
   Box,
   SimpleGrid,
   Select,
-  Flex
+  Flex,
+  Button
 } from '@chakra-ui/react';
 import MovieCard from '../components/MovieCard.jsx'
 import Navbar from '../components/Navbar.jsx'
@@ -16,11 +17,13 @@ const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOption, setSortOption] = useState('title');
   const [sortOrder, setSortOrder] = useState('asc');
+  const [page, setPage] = useState(1);
+  const limit = 4; 
 
   useEffect(() => {
      // replace with your base URL
 
-    fetch(`${baseUrl}/api/movies?search=${searchTerm}&sort=${sortOption}&order=${sortOrder}`)
+    fetch(`${baseUrl}/api/movies?search=${searchTerm}&sort=${sortOption}&order=${sortOrder}&page=${page}&limit=${limit}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -29,7 +32,7 @@ const HomePage = () => {
       })
       .then((data) => setMovies(data))
       .catch((error) => console.error('An error occurred while fetching the movies:', error));
-  }, [searchTerm, sortOption, sortOrder]);
+  }, [searchTerm, sortOption, sortOrder, page]);
   // console.log(movies)
   return (
     <Box>
@@ -60,6 +63,10 @@ const HomePage = () => {
           <MovieCard movie={movie} />
         ))}
       </SimpleGrid>
+      <Flex marginTop={5} justifyContent="center">
+          <Button onClick={() => setPage((prevPage) => prevPage - 1)} disabled={page === 1} margin={3} width={20}>Prev</Button>
+          <Button onClick={() => setPage((prevPage) => prevPage + 1)} margin={3} width={20}>Next</Button>
+        </Flex>
     </Box>
     </Box>
   );
