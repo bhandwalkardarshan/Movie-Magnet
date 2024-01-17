@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 
 const Watchlist = () => {
     const baseURL = "https://moviemagnet.onrender.com"
+    // const baseUrl = 'http://localhost:3031'
   const [movies, setMovies] = useState([]);
   const token = JSON.parse(localStorage.getItem('accessToken'));
   const toast = useToast()

@@ -13,6 +13,7 @@ import Navbar from '../components/Navbar.jsx'
 const HomePage = () => {
   
   const baseUrl = 'https://moviemagnet.onrender.com';
+  // const baseUrl = 'http://localhost:3031'
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOption, setSortOption] = useState('title');

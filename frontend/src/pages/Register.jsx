@@ -14,6 +14,7 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const baseUrl = 'https://moviemagnet.onrender.com'
+    // const baseUrl = 'http://localhost:3031'
     const navigate = useNavigate();
     const toast = useToast()
     const [username, setUsername] = useState('');

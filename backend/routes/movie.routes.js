@@ -1,6 +1,8 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const router = express.Router();
 const Movie = require('../models/movie.model'); 
+const Review = require('../models/review.model'); 
 const User = require('../models/user.model'); 
 const verifyToken = require('../middleware/verifyToken')
 
@@ -91,12 +93,20 @@ router.patch('/movies/:id', async (req, res) => {
 // DELETE
 router.delete('/movies/:id', async (req, res) => {
     try {
-        const movie = await Movie.findByIdAndDelete(req.params.id);
+        const movie = await Movie.findById(req.params.id);
         if (!movie) {
             return res.status(404).send({ message: 'Movie not found. Please check the ID and try again.' });
         }
+
+        // Delete the associated reviews
+        await Review.deleteMany({ _id: { $in: movie.reviews } });
+
+        // Delete the movie
+        await Movie.findByIdAndDelete(req.params.id);
+
         res.send(movie);
     } catch (e) {
+        console.error(e);
         if (e instanceof mongoose.Error.CastError) {
             res.status(400).send({ message: 'Invalid ID format. Please check the ID and try again.' });
         } else {
@@ -105,9 +115,10 @@ router.delete('/movies/:id', async (req, res) => {
     }
 });
 
+
 // to get movies from watchlist
 router.put('/users/watchlist/:movieId', verifyToken, async (req, res) => {
-    const userId = req.user.userId; // Extract userId from the request object
+    const userId = req.user.userId; 
     const { movieId } = req.params;
   
     const user = await User.findById(userId);

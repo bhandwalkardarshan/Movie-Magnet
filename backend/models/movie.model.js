@@ -9,7 +9,8 @@ const movieSchema = new mongoose.Schema({
     cast: [{ type: String }],
     synopsis: { type: String },
     posterURL: { type: String, required: true }, 
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }]
 });
 
 // Create a model based on the schema
