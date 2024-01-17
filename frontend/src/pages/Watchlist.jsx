@@ -3,7 +3,7 @@ import { Box, VStack, Text, Image, Flex, useToast, Button, SimpleGrid } from '@c
 import Navbar from '../components/Navbar'
 
 const Watchlist = () => {
-    const baseURL = "http://localhost:3031"
+    const baseURL = "https://moviemagnet.onrender.com"
   const [movies, setMovies] = useState([]);
   const token = JSON.parse(localStorage.getItem('accessToken'));
   const toast = useToast()

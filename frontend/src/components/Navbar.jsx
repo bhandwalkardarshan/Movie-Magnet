@@ -36,9 +36,11 @@ const Navbar = ({ setSearchTerm }) => {
         color="white"
       >
         <Flex align="center">
-          <Text fontSize="20px" fontWeight="bold">
-            MovieMagnet
-          </Text>
+          <Link as={RouterLink} to="/home">
+            <Text fontSize="20px" fontWeight="bold">
+              MovieMagnet
+            </Text>
+          </Link>
         </Flex>
 
         <InputGroup maxW="md" ml="2">

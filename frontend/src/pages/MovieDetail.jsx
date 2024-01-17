@@ -4,7 +4,7 @@ import { Box, Button, VStack, Text, Image, Flex, useToast } from '@chakra-ui/rea
 import Navbar from '../components/Navbar'
 
 const MovieDetail = () => {
-  const baseUrl = 'http://localhost:3031'; 
+  const baseUrl = 'https://moviemagnet.onrender.com'; 
   const { id } = useParams();
   const token = JSON.parse(localStorage.getItem('accessToken'));
   const toast = useToast()
