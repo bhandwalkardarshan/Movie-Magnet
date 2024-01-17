@@ -30,7 +30,7 @@ const HomePage = () => {
       .then((data) => setMovies(data))
       .catch((error) => console.error('An error occurred while fetching the movies:', error));
   }, [searchTerm, sortOption, sortOrder]);
-  console.log(movies)
+  // console.log(movies)
   return (
     <Box>
       <Navbar setSearchTerm={setSearchTerm}/>
@@ -55,7 +55,7 @@ const HomePage = () => {
             <option value="desc">Descending</option>
         </Select>
       </Flex>
-      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+      <SimpleGrid columns={{ base: 1, md: 4 }} spacing={5} >
         {movies.map((movie) => (
           <MovieCard movie={movie} />
         ))}

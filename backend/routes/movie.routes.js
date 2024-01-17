@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Movie = require('../models/movie.model'); 
+const User = require('../models/user.model'); 
+const verifyToken = require('../middleware/verifyToken')
 
 // CREATE
 router.post('/movies', async (req, res) => {
@@ -18,7 +20,7 @@ router.post('/movies', async (req, res) => {
 // /movies?sort=title&order=desc  -> to sort by title in descending order
 // /movies?sort=year&order=desc  -> to sort by year in descending order
 router.get('/movies', async (req, res) => {
-    const { page = 1, limit = 3, search = '', year, sort, order = 'asc' } = req.query;
+    const { page = 1, limit , search = '', year, sort, order = 'asc' } = req.query;
     
     let query = { 
         $or: [
@@ -103,5 +105,61 @@ router.delete('/movies/:id', async (req, res) => {
     }
 });
 
+// to get movies from watchlist
+router.put('/users/watchlist/:movieId', verifyToken, async (req, res) => {
+    const userId = req.user.userId; // Extract userId from the request object
+    const { movieId } = req.params;
+  
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).send({message:'User not found'});
+    }
+  
+    if (!user.watchlist.includes(movieId)) {
+      user.watchlist.push(movieId);
+      await user.save();
+      res.send({"user":user,message:"Movie Added to Watchlist "});
+    } else {
+      res.status(409).send({message:'Movie is already in the watchlist'});
+    }
+  });
+  
+//   to get movies in watchlist 
+router.get('/users/watchlist',verifyToken, async (req, res) => {
+    const userId = req.user.userId; 
+  
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+  
+    const movies = await Movie.find({
+      '_id': { $in: user.watchlist }
+    });
+  
+    res.send(movies);
+  });
+
+//   to delete movie from watchlist
+router.delete('/users/watchlist/:movieId', verifyToken, async (req, res) => {
+    const { movieId } = req.params;
+    const userId = req.user.userId; 
+  
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+  
+    const index = user.watchlist.indexOf(movieId);
+    if (index !== -1) {
+        user.watchlist.splice(index, 1);
+        await user.save();
+        res.send({"user":user, message:"Movie removed from watchlist"});
+    } else {
+        res.status(409).send({message:'Movie is not in the watchlist'});
+    }
+  });
+  
+  
 
 module.exports = router;

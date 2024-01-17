@@ -51,6 +51,9 @@ const Login = () => {
   
       // Get the response data
       const data = await response.json();
+      // console.log(data.token)
+      // Store the token in localStorage
+      localStorage.setItem("accessToken", JSON.stringify(data.token));
       toast({
         title: 'Login Successful!',
         status: 'success',
@@ -100,7 +103,7 @@ const Login = () => {
             </Button>
             <Box>
               Don't have an account?{' '}
-              <Link as={RouterLink} to="/signup" color={`${buttonColor}.500`}>
+              <Link as={RouterLink} to="/register" color={`${buttonColor}.500`}>
                 Sign up
               </Link>
             </Box>
