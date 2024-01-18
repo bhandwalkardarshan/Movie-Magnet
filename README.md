@@ -119,11 +119,26 @@ This is a movie listing platform where users can browse, search, and save movies
 - **Description**: Remove a movie from the user's watchlist.
 - **Authentication**: This route requires a valid token to be sent in the `Authorization` header.
 
+### Create Review - `/api/movies/:movieId/reviews`
+- **Method**: POST
+- **Description**: Add review and rating for a movie.
+- **Authentication**: This route requires a valid token to be sent in the `Authorization` header.
+
+### Get Reviews of a movie - `/api/movies/:id/reviews`
+- **Method**: GET
+- **Description**: Retrieves all reviews of a movie.
+- **Authentication**: This route requires a valid token to be sent in the `Authorization` header.
+
+### Remove Review of Movie - `/api/reviews/:id`
+- **Method**: DELETE
+- **Description**: Removes a review from the movie.
+- **Authentication**: This route requires a valid token to be sent in the `Authorization` header.
+
 ## Usage
 Open your browser and visit `http://localhost:<port_number>`
 
 ## Deployed Links
-    - Backend : `https://moviemagnet.onrender.com`
+    - Backend : `https://moviemagnet1.onrender.com`
     - Frontend : `https://movie-magnet-phi.vercel.app/`
 
 ## Contributing
