@@ -138,7 +138,7 @@ This is a movie listing platform where users can browse, search, and save movies
 Open your browser and visit `http://localhost:<port_number>`
 
 ## Deployed Links
-    - Backend : `https://moviemagnet1.onrender.com`
+    - Backend : `https://doubtful-girdle-newt.cyclic.app`
     - Frontend : `https://movie-magnet-phi.vercel.app/`
 
 ## Contributing

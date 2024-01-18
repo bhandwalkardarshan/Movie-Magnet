@@ -13,7 +13,7 @@ import {
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 const Register = () => {
-    const baseUrl = 'https://moviemagnet1.onrender.com'
+    const baseUrl = 'https://doubtful-girdle-newt.cyclic.app'
     // const baseUrl = 'http://localhost:3031'
     const navigate = useNavigate();
     const toast = useToast()
