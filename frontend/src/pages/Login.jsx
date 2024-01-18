@@ -13,7 +13,7 @@ import {
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const baseUrl = 'https://moviemagnet.onrender.com'
+  const baseUrl = 'https://moviemagnet1.onrender.com'
   // const baseUrl = 'http://localhost:3031'
   const navigate = useNavigate();
   const toast = useToast()

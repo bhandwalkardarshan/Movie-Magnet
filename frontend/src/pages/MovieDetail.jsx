@@ -4,7 +4,7 @@ import { FormControl, Box, FormLabel, Button, VStack,Stack, List, ListItem, Text
 import Navbar from '../components/Navbar'
 
 const MovieDetail = () => {
-  const baseUrl = 'https://moviemagnet.onrender.com'; 
+  const baseUrl = 'https://moviemagnet1.onrender.com'; 
   // const baseUrl = 'http://localhost:3031'
   const { id } = useParams();
   const token = JSON.parse(localStorage.getItem('accessToken'));
